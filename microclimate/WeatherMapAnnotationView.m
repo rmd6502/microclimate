@@ -24,7 +24,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         _temp = [[UILabel alloc] initWithFrame:frame];
-        _temp.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:.4];
+        _temp.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:.5];
         _temp.textColor = [UIColor blackColor];
         _temp.opaque = NO;
         _temp.font = [UIFont fontWithName:@"HelveticaNeue" size:12.0];

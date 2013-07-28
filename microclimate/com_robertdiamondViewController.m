@@ -125,7 +125,7 @@
     __weak com_robertdiamondViewController *weakSelf = self;
     __weak WeatherMapAnnotationView *weakView = view;
     CLLocation *stationLoc = [[CLLocation alloc] initWithLatitude:annot.coordinate.latitude longitude:annot.coordinate.longitude];
-    if ([stationLoc distanceFromLocation:_currentBestLocation] <= 2000 && (_conditions[annot.title][@"lastUpdate"] == nil || [[NSDate date] timeIntervalSinceDate:_conditions[annot.title][@"lastUpdate"]] > 90)) {
+    if ([stationLoc distanceFromLocation:_currentBestLocation] <= 5000 && (_conditions[annot.title][@"lastUpdate"] == nil || [[NSDate date] timeIntervalSinceDate:_conditions[annot.title][@"lastUpdate"]] > 90)) {
         _conditions[annot.title] = [@{@"lastUpdate": [NSDate date]} mutableCopy];
         view.fetcher = [WeatherAPI fetchConditionsForStation:annot withCompletionBlock:^(id fetcher, NSDictionary *result) {
             com_robertdiamondViewController *strongSelf = weakSelf;
