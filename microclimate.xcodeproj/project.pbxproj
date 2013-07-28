@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C749CCD17A4B02E005F343B /* WeatherAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C749CCC17A4B02E005F343B /* WeatherAPI.m */; };
+		9C749CCF17A55B48005F343B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C749CCE17A55B47005F343B /* CoreLocation.framework */; };
+		9C749CD217A55E4B005F343B /* WeatherMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C749CD117A55E4B005F343B /* WeatherMapAnnotation.m */; };
+		9C749CEE17A59E3D005F343B /* Airport-Blue-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C749CED17A59E3D005F343B /* Airport-Blue-icon.png */; };
+		9C749CF017A59E5A005F343B /* dg950_s2_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C749CEF17A59E59005F343B /* dg950_s2_icon.png */; };
 		9C797EAB17A47F3100DB4F48 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C797EAA17A47F3100DB4F48 /* UIKit.framework */; };
 		9C797EAD17A47F3100DB4F48 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C797EAC17A47F3100DB4F48 /* Foundation.framework */; };
 		9C797EAF17A47F3100DB4F48 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C797EAE17A47F3100DB4F48 /* CoreGraphics.framework */; };
@@ -17,10 +22,20 @@
 		9C797EBF17A47F3100DB4F48 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C797EBE17A47F3100DB4F48 /* Default@2x.png */; };
 		9C797EC117A47F3100DB4F48 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C797EC017A47F3100DB4F48 /* Default-568h@2x.png */; };
 		9C797EC417A47F3100DB4F48 /* com_robertdiamondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C797EC317A47F3100DB4F48 /* com_robertdiamondViewController.m */; };
-		9C797EC717A47F3100DB4F48 /* com_robertdiamondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C797EC517A47F3100DB4F48 /* com_robertdiamondViewController.xib */; };
+		9C797ECE17A47F7D00DB4F48 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C797ECD17A47F7D00DB4F48 /* MapKit.framework */; };
+		9C797ED117A480F800DB4F48 /* WebOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C797ED017A480F800DB4F48 /* WebOperation.m */; };
+		9CC64D7717A5DA05002B08CA /* WeatherMapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CC64D7417A5A187002B08CA /* WeatherMapAnnotationView.m */; };
+		9CC64D7817A5DA09002B08CA /* WeatherConditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CC64D7617A5D2A8002B08CA /* WeatherConditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9C749CCB17A4B02E005F343B /* WeatherAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherAPI.h; sourceTree = "<group>"; };
+		9C749CCC17A4B02E005F343B /* WeatherAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherAPI.m; sourceTree = "<group>"; };
+		9C749CCE17A55B47005F343B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		9C749CD017A55E4B005F343B /* WeatherMapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherMapAnnotation.h; sourceTree = "<group>"; };
+		9C749CD117A55E4B005F343B /* WeatherMapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherMapAnnotation.m; sourceTree = "<group>"; };
+		9C749CED17A59E3D005F343B /* Airport-Blue-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Airport-Blue-icon.png"; sourceTree = "<group>"; };
+		9C749CEF17A59E59005F343B /* dg950_s2_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dg950_s2_icon.png; sourceTree = "<group>"; };
 		9C797EA717A47F3100DB4F48 /* microclimate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = microclimate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C797EAA17A47F3100DB4F48 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9C797EAC17A47F3100DB4F48 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -36,7 +51,13 @@
 		9C797EC017A47F3100DB4F48 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9C797EC217A47F3100DB4F48 /* com_robertdiamondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = com_robertdiamondViewController.h; sourceTree = "<group>"; };
 		9C797EC317A47F3100DB4F48 /* com_robertdiamondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = com_robertdiamondViewController.m; sourceTree = "<group>"; };
-		9C797EC617A47F3100DB4F48 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/com_robertdiamondViewController.xib; sourceTree = "<group>"; };
+		9C797ECD17A47F7D00DB4F48 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		9C797ECF17A480F800DB4F48 /* WebOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebOperation.h; sourceTree = "<group>"; };
+		9C797ED017A480F800DB4F48 /* WebOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebOperation.m; sourceTree = "<group>"; };
+		9CC64D7317A5A187002B08CA /* WeatherMapAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherMapAnnotationView.h; sourceTree = "<group>"; };
+		9CC64D7417A5A187002B08CA /* WeatherMapAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherMapAnnotationView.m; sourceTree = "<group>"; };
+		9CC64D7517A5D2A8002B08CA /* WeatherConditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherConditions.h; sourceTree = "<group>"; };
+		9CC64D7617A5D2A8002B08CA /* WeatherConditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherConditions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +65,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C749CCF17A55B48005F343B /* CoreLocation.framework in Frameworks */,
+				9C797ECE17A47F7D00DB4F48 /* MapKit.framework in Frameworks */,
 				9C797EAB17A47F3100DB4F48 /* UIKit.framework in Frameworks */,
 				9C797EAD17A47F3100DB4F48 /* Foundation.framework in Frameworks */,
 				9C797EAF17A47F3100DB4F48 /* CoreGraphics.framework in Frameworks */,
@@ -73,6 +96,8 @@
 		9C797EA917A47F3100DB4F48 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9C749CCE17A55B47005F343B /* CoreLocation.framework */,
+				9C797ECD17A47F7D00DB4F48 /* MapKit.framework */,
 				9C797EAA17A47F3100DB4F48 /* UIKit.framework */,
 				9C797EAC17A47F3100DB4F48 /* Foundation.framework */,
 				9C797EAE17A47F3100DB4F48 /* CoreGraphics.framework */,
@@ -87,8 +112,17 @@
 				9C797EBA17A47F3100DB4F48 /* com_robertdiamondAppDelegate.m */,
 				9C797EC217A47F3100DB4F48 /* com_robertdiamondViewController.h */,
 				9C797EC317A47F3100DB4F48 /* com_robertdiamondViewController.m */,
-				9C797EC517A47F3100DB4F48 /* com_robertdiamondViewController.xib */,
+				9C797ECF17A480F800DB4F48 /* WebOperation.h */,
+				9C797ED017A480F800DB4F48 /* WebOperation.m */,
+				9C749CCB17A4B02E005F343B /* WeatherAPI.h */,
+				9C749CCC17A4B02E005F343B /* WeatherAPI.m */,
 				9C797EB117A47F3100DB4F48 /* Supporting Files */,
+				9C749CD017A55E4B005F343B /* WeatherMapAnnotation.h */,
+				9C749CD117A55E4B005F343B /* WeatherMapAnnotation.m */,
+				9CC64D7317A5A187002B08CA /* WeatherMapAnnotationView.h */,
+				9CC64D7417A5A187002B08CA /* WeatherMapAnnotationView.m */,
+				9CC64D7517A5D2A8002B08CA /* WeatherConditions.h */,
+				9CC64D7617A5D2A8002B08CA /* WeatherConditions.m */,
 			);
 			path = microclimate;
 			sourceTree = "<group>";
@@ -96,6 +130,8 @@
 		9C797EB117A47F3100DB4F48 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9C749CEF17A59E59005F343B /* dg950_s2_icon.png */,
+				9C749CED17A59E3D005F343B /* Airport-Blue-icon.png */,
 				9C797EB217A47F3100DB4F48 /* microclimate-Info.plist */,
 				9C797EB317A47F3100DB4F48 /* InfoPlist.strings */,
 				9C797EB617A47F3100DB4F48 /* main.m */,
@@ -163,7 +199,8 @@
 				9C797EBD17A47F3100DB4F48 /* Default.png in Resources */,
 				9C797EBF17A47F3100DB4F48 /* Default@2x.png in Resources */,
 				9C797EC117A47F3100DB4F48 /* Default-568h@2x.png in Resources */,
-				9C797EC717A47F3100DB4F48 /* com_robertdiamondViewController.xib in Resources */,
+				9C749CEE17A59E3D005F343B /* Airport-Blue-icon.png in Resources */,
+				9C749CF017A59E5A005F343B /* dg950_s2_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,9 +211,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CC64D7817A5DA09002B08CA /* WeatherConditions.m in Sources */,
 				9C797EB717A47F3100DB4F48 /* main.m in Sources */,
 				9C797EBB17A47F3100DB4F48 /* com_robertdiamondAppDelegate.m in Sources */,
 				9C797EC417A47F3100DB4F48 /* com_robertdiamondViewController.m in Sources */,
+				9C797ED117A480F800DB4F48 /* WebOperation.m in Sources */,
+				9C749CCD17A4B02E005F343B /* WeatherAPI.m in Sources */,
+				9CC64D7717A5DA05002B08CA /* WeatherMapAnnotationView.m in Sources */,
+				9C749CD217A55E4B005F343B /* WeatherMapAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,14 +231,6 @@
 				9C797EB417A47F3100DB4F48 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		9C797EC517A47F3100DB4F48 /* com_robertdiamondViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9C797EC617A47F3100DB4F48 /* en */,
-			);
-			name = com_robertdiamondViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -299,6 +333,7 @@
 				9C797ECC17A47F3100DB4F48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

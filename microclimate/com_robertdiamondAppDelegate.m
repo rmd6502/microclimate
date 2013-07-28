@@ -16,7 +16,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.viewController = [[com_robertdiamondViewController alloc] initWithNibName:@"com_robertdiamondViewController" bundle:nil];
+    self.viewController = [[com_robertdiamondViewController alloc] init];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
