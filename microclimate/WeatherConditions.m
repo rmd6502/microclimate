@@ -10,10 +10,11 @@
 
 @implementation WeatherConditions
 
-- (id)initWithDictionary:(NSDictionary *)dictionary
+- (id)initWithDictionary:(NSDictionary *)dic
 {
     self = [self init];
     if (self) {
+        NSDictionary *dictionary = dic[@"current_observation"];
         _conditions = dictionary[@"weather"];
         _temp_c = [dictionary[@"temp_c"] floatValue];
         _wind_deg = [dictionary[@"wind_degrees"] floatValue];

@@ -10,4 +10,6 @@
 
 @interface WeatherMapAnnotationView : MKAnnotationView
 
+@property (nonatomic,weak) id fetcher;
+
 @end

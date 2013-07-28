@@ -112,17 +112,17 @@
 				9C797EBA17A47F3100DB4F48 /* com_robertdiamondAppDelegate.m */,
 				9C797EC217A47F3100DB4F48 /* com_robertdiamondViewController.h */,
 				9C797EC317A47F3100DB4F48 /* com_robertdiamondViewController.m */,
-				9C797ECF17A480F800DB4F48 /* WebOperation.h */,
-				9C797ED017A480F800DB4F48 /* WebOperation.m */,
 				9C749CCB17A4B02E005F343B /* WeatherAPI.h */,
 				9C749CCC17A4B02E005F343B /* WeatherAPI.m */,
-				9C797EB117A47F3100DB4F48 /* Supporting Files */,
+				9CC64D7517A5D2A8002B08CA /* WeatherConditions.h */,
+				9CC64D7617A5D2A8002B08CA /* WeatherConditions.m */,
 				9C749CD017A55E4B005F343B /* WeatherMapAnnotation.h */,
 				9C749CD117A55E4B005F343B /* WeatherMapAnnotation.m */,
 				9CC64D7317A5A187002B08CA /* WeatherMapAnnotationView.h */,
 				9CC64D7417A5A187002B08CA /* WeatherMapAnnotationView.m */,
-				9CC64D7517A5D2A8002B08CA /* WeatherConditions.h */,
-				9CC64D7617A5D2A8002B08CA /* WeatherConditions.m */,
+				9C797ECF17A480F800DB4F48 /* WebOperation.h */,
+				9C797ED017A480F800DB4F48 /* WebOperation.m */,
+				9C797EB117A47F3100DB4F48 /* Supporting Files */,
 			);
 			path = microclimate;
 			sourceTree = "<group>";

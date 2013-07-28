@@ -45,7 +45,7 @@
     }
 }
 
-+ (void)fetchStationsNearLatitude:(double)lat longitude:(double)lon withCompletionBlock:(ArrayCompletion)successBlock failureBlock:(ErrorCompletion)failureBlock
++ (id)fetchStationsNearLatitude:(double)lat longitude:(double)lon withCompletionBlock:(ArrayCompletion)successBlock failureBlock:(ErrorCompletion)failureBlock
 {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[self createRequestURLWithPath:FETCH_STATIONS_PATH andQuery:[self queryWithLatitude:lat longitude:lon]]]];
     request.timeoutInterval = 10.0f;
@@ -58,7 +58,7 @@
         
         if (error) {
             if (failureBlock) {
-                failureBlock(error);
+                failureBlock(self,error);
             }
         } else {
             if (successBlock) {
@@ -71,13 +71,14 @@
                 if (pws) {
                     [ret addObjectsFromArray:pws];
                 }
-                successBlock(ret);
+                successBlock(self,ret);
             }
         }
     }];
+    return self;
 }
 
-+ (void)fetchConditionsForStation:(WeatherMapAnnotation *)station withCompletionBlock:(DictionaryCompletion)successBlock failureBlock:(ErrorCompletion)failureBlock
++ (id)fetchConditionsForStation:(WeatherMapAnnotation *)station withCompletionBlock:(DictionaryCompletion)successBlock failureBlock:(ErrorCompletion)failureBlock
 {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[self createRequestURLWithPath:CONDITIONS_PATH andQuery:[self queryWithStation:station]]]];
     request.timeoutInterval = 10.0f;
@@ -86,14 +87,15 @@
         id result = [NSJSONSerialization JSONObjectWithData:operation.data options:0 error:&error];
         if (error || ![result isKindOfClass:[NSDictionary class]]) {
             if (failureBlock) {
-                failureBlock(error);
+                failureBlock(self,error);
             }
         } else {
             if (successBlock) {
-                successBlock(result);
+                successBlock(self,result);
             }
         }
     }];
+    return self;
 }
 
 @end

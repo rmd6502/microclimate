@@ -50,6 +50,7 @@
 	_mapView = [[self class] sharedMapView];
     _mapView.frame = self.view.frame;
     _mapView.delegate = self;
+    _mapView.showsUserLocation = YES;
     [self.view addSubview:_mapView];
     
 }
@@ -73,7 +74,7 @@
         }
         _currentBestLocation = bestLocation;
         __weak com_robertdiamondViewController *weakSelf = self;
-        [WeatherAPI fetchStationsNearLatitude:bestLocation.coordinate.latitude longitude:bestLocation.coordinate.longitude withCompletionBlock:^(NSArray *results) {
+        [WeatherAPI fetchStationsNearLatitude:bestLocation.coordinate.latitude longitude:bestLocation.coordinate.longitude withCompletionBlock:^(id fetcher, NSArray *results) {
             com_robertdiamondViewController *strongSelf = weakSelf;
             if (strongSelf) {
                 NSLog(@"Results: %@", results);
@@ -103,6 +104,9 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id < MKAnnotation >)annotation
 {
+    if (annotation == mapView.userLocation) {
+        return nil;
+    }
     WeatherMapAnnotation *annot = (WeatherMapAnnotation *)annotation;
     
     WeatherMapAnnotationView *view = (WeatherMapAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"weathermap"];
@@ -123,16 +127,16 @@
     CLLocation *stationLoc = [[CLLocation alloc] initWithLatitude:annot.coordinate.latitude longitude:annot.coordinate.longitude];
     if ([stationLoc distanceFromLocation:_currentBestLocation] <= 2000 && (_conditions[annot.title][@"lastUpdate"] == nil || [[NSDate date] timeIntervalSinceDate:_conditions[annot.title][@"lastUpdate"]] > 90)) {
         _conditions[annot.title] = [@{@"lastUpdate": [NSDate date]} mutableCopy];
-        [WeatherAPI fetchConditionsForStation:annot withCompletionBlock:^(NSDictionary *result) {
+        view.fetcher = [WeatherAPI fetchConditionsForStation:annot withCompletionBlock:^(id fetcher, NSDictionary *result) {
             com_robertdiamondViewController *strongSelf = weakSelf;
-            if (strongSelf) {
-                WeatherMapAnnotationView *strongView = weakView;
+            WeatherMapAnnotationView *strongView = weakView;
+            if (strongSelf && strongView && strongView.fetcher == fetcher) {
                 if (result) {
                     NSLog(@"Conditions at %@: %@", annot.title, result);
                     strongSelf->_conditions[annot.title] = [result mutableCopy];
                     strongSelf->_conditions[annot.title][@"lastUpdate"] = [NSDate date];
                     annot.conditions = [[WeatherConditions alloc] initWithDictionary:result];
-                    [strongView setNeedsDisplay];
+                    [strongView setNeedsLayout];
                 }
             }
         } failureBlock:nil];
