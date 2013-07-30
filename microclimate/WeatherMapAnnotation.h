@@ -15,6 +15,7 @@
 @property (nonatomic,copy) NSString *title;
 @property (nonatomic) NSString *subTitle;
 @property (nonatomic) WeatherConditions *conditions;
+@property (nonatomic) MKAnnotationView *theView;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

@@ -19,6 +19,7 @@
 @property (nonatomic) CLLocation *currentBestLocation;
 @property (nonatomic) NSMutableSet *stations;
 @property (nonatomic) NSMutableDictionary *conditions;
+@property (nonatomic) NSTimer *updateTimer;
 @end
 
 @implementation com_robertdiamondViewController
@@ -86,7 +87,7 @@
                     }
                 }];
                 if (_stations) {
-                    NSMutableSet *removedStations = [_stations copy];
+                    NSMutableSet *removedStations = [_stations mutableCopy];
                     [removedStations minusSet:resultSet];
                     [resultSet minusSet:_stations];
                     [strongSelf->_mapView removeAnnotations:[removedStations allObjects]];
@@ -114,6 +115,7 @@
         view = [[WeatherMapAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"weathermap"];
     }
     
+    annot.theView = view;
     if ([annot.type isEqualToString:@"airport"]) {
         view.image = [UIImage imageNamed:@"Airport-Blue-icon"];
     } else {
@@ -121,28 +123,59 @@
     }
     view.bounds = CGRectMake(0, 0, 22, 22);
     view.canShowCallout = YES;
-    
-    __weak com_robertdiamondViewController *weakSelf = self;
-    __weak WeatherMapAnnotationView *weakView = view;
-    CLLocation *stationLoc = [[CLLocation alloc] initWithLatitude:annot.coordinate.latitude longitude:annot.coordinate.longitude];
-    if ([stationLoc distanceFromLocation:_currentBestLocation] <= 5000 && (_conditions[annot.title][@"lastUpdate"] == nil || [[NSDate date] timeIntervalSinceDate:_conditions[annot.title][@"lastUpdate"]] > 90)) {
-        _conditions[annot.title] = [@{@"lastUpdate": [NSDate date]} mutableCopy];
-        view.fetcher = [WeatherAPI fetchConditionsForStation:annot withCompletionBlock:^(id fetcher, NSDictionary *result) {
-            com_robertdiamondViewController *strongSelf = weakSelf;
-            WeatherMapAnnotationView *strongView = weakView;
-            if (strongSelf && strongView && strongView.fetcher == fetcher) {
-                if (result) {
-                    NSLog(@"Conditions at %@: %@", annot.title, result);
-                    strongSelf->_conditions[annot.title] = [result mutableCopy];
-                    strongSelf->_conditions[annot.title][@"lastUpdate"] = [NSDate date];
-                    annot.conditions = [[WeatherConditions alloc] initWithDictionary:result];
-                    [strongView setNeedsLayout];
-                }
-            }
-        } failureBlock:nil];
-    }
-    
+        
     return view;
+}
+
+- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
+{
+    if (_updateTimer.isValid) {
+        [_updateTimer invalidate];
+    }
+    __weak com_robertdiamondViewController *weakSelf = self;
+    _updateTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(_doUpdateMap:) userInfo:weakSelf repeats:NO];
+}
+
+- (void)_doUpdateMap:(NSTimer *)timer
+{
+    com_robertdiamondViewController *strongSelf = timer.userInfo;
+    if (strongSelf) {
+        if (strongSelf->_currentBestLocation != nil && (strongSelf->_mapView.region.center.latitude != strongSelf->_currentBestLocation.coordinate.latitude || strongSelf->_mapView.region.center.longitude != strongSelf->_currentBestLocation.coordinate.longitude)) {
+            if ([CLLocationManager significantLocationChangeMonitoringAvailable]) {
+                [strongSelf->_locationManager stopMonitoringSignificantLocationChanges];
+            } else {
+                [strongSelf->_locationManager stopUpdatingLocation];
+            }
+            strongSelf->_currentBestLocation = [[CLLocation alloc] initWithLatitude:strongSelf->_mapView.region.center.latitude longitude:strongSelf->_mapView.region.center.longitude];
+            [self locationManager:strongSelf->_locationManager didUpdateLocations:@[strongSelf->_currentBestLocation]];
+        }
+
+        [strongSelf->_mapView.annotations enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            if (![obj isKindOfClass:[WeatherMapAnnotation class]]) {
+                return;
+            }
+            WeatherMapAnnotation *annotation = obj;
+            __weak WeatherMapAnnotationView *weakView = (WeatherMapAnnotationView *)annotation.theView;
+            CLLocation *stationLoc = [[CLLocation alloc] initWithLatitude:annotation.coordinate.latitude longitude:annotation.coordinate.longitude];
+            __weak com_robertdiamondViewController *weakSelf = strongSelf;
+            if ([stationLoc distanceFromLocation:_currentBestLocation] <= 5000 && (strongSelf->_conditions[annotation.title][@"lastUpdate"] == nil || [[NSDate date] timeIntervalSinceDate:strongSelf->_conditions[annotation.title][@"lastUpdate"]] > 90)) {
+                strongSelf->_conditions[annotation.title] = [@{@"lastUpdate": [NSDate date]} mutableCopy];
+                ((WeatherMapAnnotationView *)annotation.theView).fetcher = [WeatherAPI fetchConditionsForStation:annotation withCompletionBlock:^(id fetcher, NSDictionary *result) {
+                    com_robertdiamondViewController *strongSelf = weakSelf;
+                    WeatherMapAnnotationView *strongView = weakView;
+                    if (strongSelf && strongView && strongView.fetcher == fetcher) {
+                        if (result) {
+                            NSLog(@"Conditions at %@: %@", annotation.title, result);
+                            strongSelf->_conditions[annotation.title] = [result mutableCopy];
+                            strongSelf->_conditions[annotation.title][@"lastUpdate"] = [NSDate date];
+                            annotation.conditions = [[WeatherConditions alloc] initWithDictionary:result];
+                            [strongView setNeedsLayout];
+                        }
+                    }
+                } failureBlock:nil];
+            }
+        }];
+    }
 }
 
 @end
