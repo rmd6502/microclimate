@@ -10,7 +10,7 @@
 #import "WeatherMapAnnotation.h"
 #import "WebOperation.h"
 
-#define API_KEY @"5251971eeb9b38bc"
+#define API_KEY @"get_your_own"
 #define API_BASE @"http://api.wunderground.com/api/"
 
 #define QUERY_PREFIX @"/q/"
