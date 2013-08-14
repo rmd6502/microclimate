@@ -53,7 +53,12 @@
         NSError *error = nil;
         id result = nil;
         if (operation.data) {
-            result = [NSJSONSerialization JSONObjectWithData:operation.data options:0 error:&error];
+            @try {
+                result = [NSJSONSerialization JSONObjectWithData:operation.data options:0 error:&error];
+            }
+            @catch (NSException *exception) {
+                error = [NSError errorWithDomain:@"JSON" code:1 userInfo:@{NSLocalizedDescriptionKey: exception.reason}];
+            }
         }
         
         if (error) {
@@ -84,7 +89,15 @@
     request.timeoutInterval = 10.0f;
     [WebOperation webOperationWithRequest:request onComplete:^(WebOperation *operation) {
         NSError *error = nil;
-        id result = [NSJSONSerialization JSONObjectWithData:operation.data options:0 error:&error];
+        id result = nil;
+        if (operation.data) {
+            @try {
+                result = [NSJSONSerialization JSONObjectWithData:operation.data options:0 error:&error];
+            }
+            @catch (NSException *exception) {
+                error = [NSError errorWithDomain:@"JSON" code:1 userInfo:@{NSLocalizedDescriptionKey: exception.reason}];
+            }
+        }
         if (error || ![result isKindOfClass:[NSDictionary class]]) {
             if (failureBlock) {
                 failureBlock(self,error);
