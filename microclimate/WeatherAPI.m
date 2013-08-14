@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Robert Diamond. All rights reserved.
 //
 
+#import "apikey.h"
 #import "WeatherAPI.h"
 #import "WeatherMapAnnotation.h"
 #import "WebOperation.h"
 
-#define API_KEY @"get_your_own"
 #define API_BASE @"http://api.wunderground.com/api/"
 
 #define QUERY_PREFIX @"/q/"

@@ -58,6 +58,7 @@
 		9CC64D7417A5A187002B08CA /* WeatherMapAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherMapAnnotationView.m; sourceTree = "<group>"; };
 		9CC64D7517A5D2A8002B08CA /* WeatherConditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherConditions.h; sourceTree = "<group>"; };
 		9CC64D7617A5D2A8002B08CA /* WeatherConditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherConditions.m; sourceTree = "<group>"; };
+		D6D6C0DF17BBC76B0025523A /* apikey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = apikey.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +124,7 @@
 				9C797ECF17A480F800DB4F48 /* WebOperation.h */,
 				9C797ED017A480F800DB4F48 /* WebOperation.m */,
 				9C797EB117A47F3100DB4F48 /* Supporting Files */,
+				D6D6C0DF17BBC76B0025523A /* apikey.h */,
 			);
 			path = microclimate;
 			sourceTree = "<group>";
