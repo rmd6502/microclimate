@@ -1,4 +1,4 @@
 microclimate
 ============
 
-See microclimates in your neighborhoob on iPhone
+See microclimates in your neighborhood on iPhone
